@@ -30,3 +30,7 @@ Note: You can not use a server that has already running a nameserver on the exte
   - Setup an SSH tunnel using the script as Proxy:
 
    ssh -C -o ProxyCommand="dnstunnel sshdns.server.example.com" user@localhost
+
+
+
+修改与2024年，将过时的Perl用法进行更新
