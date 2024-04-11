@@ -5,7 +5,7 @@ $VERSION="2008-11-02";
 use Fcntl;
 use Net::DNS;
 use MIME::Base64;
-use MIME::Base32 qw ( RFC );
+use MIME::Base32;
 use Time::HiRes qw (usleep gettimeofday );
 use Getopt::Long;
 use threads;
@@ -202,7 +202,7 @@ while(1) {
     }
 
     if($downstate eq "WAIT_FOR_REPLY"){
-        if($res_down->bgisready($down_sock)) { $downstate = "GOT_REPLY"; }
+        if($res_down->bgbusy($down_sock)) { $downstate = "GOT_REPLY"; }
         if(gettimeofday() - $down_sent_time > 2) {
             undef $down_sock;
             $throws_down=0;
@@ -259,7 +259,7 @@ up:
         my $temp_payload;
         my $data = $read_queue->dequeue_nb;
         if(defined $data){
-            $temp_payload = lc MIME::Base32::encode($data);
+            $temp_payload = lc MIME::Base32::encode_base32($data, 'RFC');;
             $temp_payload =~s/(.{60})/$1\./g;
             $temp_payload =~s/\.\././g;
             $payload = "$temp_payload.$nonce-$sum_up.id-$id.up.$extension";

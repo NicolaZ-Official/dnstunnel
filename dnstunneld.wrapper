@@ -3,8 +3,8 @@
 # Configure your DNS tunnel server here
 #
 
-DNSHOST="server.example.com"           # change this to your DNS name
-REPLYIP="127.0.0.1"                    # what to answer on real DNS requests
+DNSHOST="test.dnstunnel.cn"           # change this to your DNS name
+REPLYIP="47.92.130.4"                    # what to answer on real DNS requests
 OPTIONS=""                             # give additional options here
 
 DNSTUNNELD="/opt/dnstunnel/dnstunneld" # the server script
